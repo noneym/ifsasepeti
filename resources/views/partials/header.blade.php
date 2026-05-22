@@ -55,8 +55,8 @@
             <div class="hidden lg:block w-44 flex-shrink-0" aria-hidden="true"></div>
         </div>
 
-        {{-- Row 2: search bar (narrower on mobile so the mascot has room) --}}
-        <div class="mt-4 w-3/5 sm:w-auto sm:max-w-xl">
+        {{-- Row 2: search bar (leaves ~7rem for mascot on mobile, fills available width up to xl on sm+) --}}
+        <div class="mt-4 w-[calc(100%-7rem)] sm:w-auto sm:max-w-xl">
             <form action="{{ url('/ara') }}" method="get" class="relative">
                 <input type="text"
                        name="q"
