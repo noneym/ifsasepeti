@@ -6,7 +6,7 @@ cd /var/www/html
 # Ensure storage is writable (mounted volumes may reset ownership)
 chown -R www-data:www-data storage bootstrap/cache || true
 
-# Generate APP_KEY if missing — useful for first deploy if not set in env
+# Generate APP_KEY if missing - useful for first deploy if not set in env
 if [ -z "${APP_KEY:-}" ] && [ ! -f .env ]; then
     php artisan key:generate --force --no-interaction || true
 fi

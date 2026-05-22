@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Gizlilik Politikası - ifsasepeti.com')
-@section('description', 'ifsasepeti.com gizlilik politikası — kişisel veri işleme, çerez kullanımı ve KVKK aydınlatması.')
+@section('description', 'ifsasepeti.com gizlilik politikası - kişisel veri işleme, çerez kullanımı ve KVKK aydınlatması.')
 
 @section('content')
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -59,8 +59,8 @@
 
             <h2>Üçüncü Parti Hizmetler</h2>
             <ul>
-                <li><strong>thum.io</strong> — listelediğimiz sitelerin ekran görüntülerini almak için</li>
-                <li><strong>Google Fonts</strong> — yazı tipleri (CDN üzerinden)</li>
+                <li><strong>thum.io</strong> - listelediğimiz sitelerin ekran görüntülerini almak için</li>
+                <li><strong>Google Fonts</strong> - yazı tipleri (CDN üzerinden)</li>
                 <li>Listelediğimiz dış siteler kendi gizlilik politikalarına tabidir; bu sitelere
                     yönlendirildiğinizde onların kuralları geçerlidir.</li>
             </ul>

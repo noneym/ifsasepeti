@@ -43,7 +43,7 @@
     }
 }
 
-/* Hero mascot — peeks out from BEHIND the top-right card.
+/* Hero mascot - peeks out from BEHIND the top-right card.
    Bottom dips into the first row but cards (z-10) cover it. */
 .hero-mascot {
     position: absolute;

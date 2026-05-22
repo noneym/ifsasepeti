@@ -57,7 +57,7 @@
                             </td>
                             <td class="px-2 py-3 text-xs">
                                 <span class="inline-flex px-2 py-0.5 rounded bg-ifsa-bg border border-ifsa-border">
-                                    {{ $site->category->name ?? '—' }}
+                                    {{ $site->category->name ?? '-' }}
                                 </span>
                             </td>
                             <td class="px-2 py-3 text-xs text-ifsa-muted">

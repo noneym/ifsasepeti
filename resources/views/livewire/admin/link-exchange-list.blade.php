@@ -45,10 +45,10 @@
                                         {{ Str::limit(parse_url($le->partner_back_url, PHP_URL_PATH) ?: $le->partner_back_url, 25) }} ↗
                                     </a>
                                 @else
-                                    <span class="text-ifsa-muted">—</span>
+                                    <span class="text-ifsa-muted">-</span>
                                 @endif
                             </td>
-                            <td class="px-2 py-3 text-xs text-ifsa-muted">{{ $le->contact_email ?: '—' }}</td>
+                            <td class="px-2 py-3 text-xs text-ifsa-muted">{{ $le->contact_email ?: '-' }}</td>
                             <td class="px-2 py-3 text-center">
                                 @php
                                     $colors = ['pending' => ['amber-100', 'amber-700'], 'verified' => ['emerald-100', 'emerald-700'], 'broken' => ['rose-100', 'rose-700'], 'rejected' => ['gray-100', 'gray-700']];

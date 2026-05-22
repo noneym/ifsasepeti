@@ -18,7 +18,7 @@
                 <div>
                     <label class="block text-xs font-bold mb-1.5">Kategori *</label>
                     <select wire:model="category_id" class="w-full rounded-lg border-ifsa-border focus:border-ifsa-orange focus:ring-ifsa-orange/30 text-sm">
-                        <option value="">— Seçin —</option>
+                        <option value="">- Seçin -</option>
                         @foreach ($categories as $cat)
                             <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                         @endforeach

@@ -20,7 +20,7 @@ class CategoryList extends Component
     {
         $cat = Category::findOrFail($id);
         if ($cat->sites()->exists()) {
-            session()->flash('status', "“{$cat->name}” silinemedi — içinde site var.");
+            session()->flash('status', "“{$cat->name}” silinemedi - içinde site var.");
             return;
         }
         $cat->delete();

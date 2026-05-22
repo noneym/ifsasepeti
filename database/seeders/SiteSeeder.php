@@ -134,7 +134,7 @@ class SiteSeeder extends Seeder
             'PornHub' => [
                 'tagline' => 'Dünyanın en çok ziyaret edilen ücretsiz tube sitesi',
                 'rating' => 4.50,
-                'review_long' => "PornHub, ücretsiz porno tube siteleri kategorisinin tartışmasız lideri. Milyonlarca video, binlerce stüdyo ortaklığı ve düzgün bir arama deneyimi sunan platform, yetişkin internetinin en bilinen markası haline geldi.\n\nSitenin en güçlü yanı içerik çeşitliliği — amatör çekimlerden büyük prodüksiyonlara, kategori bazlı koleksiyonlardan canlı yayınlara kadar her şey burada. Premium aboneliği almasanız bile ücretsiz olarak HD kalitede izleyebileceğiniz binlerce video var.\n\nReklam yoğunluğu son dönemde arttı ama bir VPN veya reklam engelleyici ile bu sorun büyük ölçüde çözülüyor. Türkiye'den erişim için VPN gerekli.",
+                'review_long' => "PornHub, ücretsiz porno tube siteleri kategorisinin tartışmasız lideri. Milyonlarca video, binlerce stüdyo ortaklığı ve düzgün bir arama deneyimi sunan platform, yetişkin internetinin en bilinen markası haline geldi.\n\nSitenin en güçlü yanı içerik çeşitliliği - amatör çekimlerden büyük prodüksiyonlara, kategori bazlı koleksiyonlardan canlı yayınlara kadar her şey burada. Premium aboneliği almasanız bile ücretsiz olarak HD kalitede izleyebileceğiniz binlerce video var.\n\nReklam yoğunluğu son dönemde arttı ama bir VPN veya reklam engelleyici ile bu sorun büyük ölçüde çözülüyor. Türkiye'den erişim için VPN gerekli.",
                 'pros' => [
                     'Devasa video kütüphanesi (10M+ video)',
                     'HD ve 4K kalite seçenekleri',
@@ -155,7 +155,7 @@ class SiteSeeder extends Seeder
                     '30+ tematik kanal tek abonelikle',
                     'Tüm içerik 4K Ultra HD',
                     'Mobil uygulama ve offline indirme',
-                    'Reklam yok — temiz arayüz',
+                    'Reklam yok - temiz arayüz',
                     'Düzenli haftalık güncellemeler',
                 ],
                 'cons' => [
@@ -166,7 +166,7 @@ class SiteSeeder extends Seeder
             'Candy AI' => [
                 'tagline' => 'AI ile özelleştirilebilir sanal partner ve sohbet',
                 'rating' => 4.30,
-                'review_long' => "Candy AI, son birkaç yılda hızla yükselen AI tabanlı yetişkin sohbet ve içerik üretici platformlarının önde gelenlerinden. Kullanıcı kendi sanal karakterini tasarlıyor — saç rengi, vücut tipi, kişilik özellikleri seçilebiliyor — ve bu karakterle metin, sesli ve görüntülü etkileşime giriyor.\n\nUygulama tamamen rıza temelli yapay zeka karakterleriyle çalışıyor; gerçek bir kişiyi simüle etmiyor. Görsel kalite hızla iyileşiyor, sohbet doğal ve uzun süreli hafıza özelliği sayesinde karakter sizi hatırlıyor.\n\nÜcretsiz versiyonda günlük mesaj limiti var; premium aboneler sınırsız mesaj, sınırsız görsel üretimi ve ses mesajı gönderme özelliklerine erişiyor.",
+                'review_long' => "Candy AI, son birkaç yılda hızla yükselen AI tabanlı yetişkin sohbet ve içerik üretici platformlarının önde gelenlerinden. Kullanıcı kendi sanal karakterini tasarlıyor - saç rengi, vücut tipi, kişilik özellikleri seçilebiliyor - ve bu karakterle metin, sesli ve görüntülü etkileşime giriyor.\n\nUygulama tamamen rıza temelli yapay zeka karakterleriyle çalışıyor; gerçek bir kişiyi simüle etmiyor. Görsel kalite hızla iyileşiyor, sohbet doğal ve uzun süreli hafıza özelliği sayesinde karakter sizi hatırlıyor.\n\nÜcretsiz versiyonda günlük mesaj limiti var; premium aboneler sınırsız mesaj, sınırsız görsel üretimi ve ses mesajı gönderme özelliklerine erişiyor.",
                 'pros' => [
                     'Tamamen özelleştirilebilir AI karakterler',
                     'Uzun süreli sohbet hafızası',
@@ -182,7 +182,7 @@ class SiteSeeder extends Seeder
             'CamSoda' => [
                 'tagline' => 'Yenilikçi etkileşim özellikleriyle canlı kamera platformu',
                 'rating' => 4.10,
-                'review_long' => "CamSoda, canlı yayın yapan modellerle gerçek zamanlı etkileşim sunan bir webcam platformu. Sektörün diğer büyük oyuncularına göre daha agresif bir bonus sistemi ve düşük token fiyatlarıyla dikkat çekiyor.\n\nPlatformun en sevilen özelliği ücretsiz olarak izlenebilen geniş bir genel yayın havuzu — kayıt olmadan bile birçok modeli izleyebiliyorsunuz. Token aldığınızda bahşiş bırakabiliyor, özel oda açabiliyor veya kontrollü oyuncak özelliklerine erişebiliyorsunuz.\n\nMobil deneyim oldukça akıcı, çok kameralı görünüm desteği var ve sık sık ünlü porno yıldızlarının özel yayınlarına ev sahipliği yapıyor.",
+                'review_long' => "CamSoda, canlı yayın yapan modellerle gerçek zamanlı etkileşim sunan bir webcam platformu. Sektörün diğer büyük oyuncularına göre daha agresif bir bonus sistemi ve düşük token fiyatlarıyla dikkat çekiyor.\n\nPlatformun en sevilen özelliği ücretsiz olarak izlenebilen geniş bir genel yayın havuzu - kayıt olmadan bile birçok modeli izleyebiliyorsunuz. Token aldığınızda bahşiş bırakabiliyor, özel oda açabiliyor veya kontrollü oyuncak özelliklerine erişebiliyorsunuz.\n\nMobil deneyim oldukça akıcı, çok kameralı görünüm desteği var ve sık sık ünlü porno yıldızlarının özel yayınlarına ev sahipliği yapıyor.",
                 'pros' => [
                     'Ücretsiz genel yayın izleme',
                     'Token fiyatları rakiplere göre uygun',

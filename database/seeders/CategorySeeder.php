@@ -85,7 +85,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'TikTok Porno Siteleri',
                 'slug' => 'tiktok-porno',
-                'subtitle' => 'NSFW kısa videolar — TikTok tarzı yetişkin akış!',
+                'subtitle' => 'NSFW kısa videolar - TikTok tarzı yetişkin akış!',
                 'icon' => 'music',
                 'accent_color' => '#000000',
                 'button_label' => 'SİTE DAHA GÖR',

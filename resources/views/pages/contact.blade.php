@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'İletişim - ifsasepeti.com')
-@section('description', 'ifsasepeti.com iletişim bilgileri — link değişimi, reklam, telif ve genel sorular.')
+@section('description', 'ifsasepeti.com iletişim bilgileri - link değişimi, reklam, telif ve genel sorular.')
 
 @section('content')
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">

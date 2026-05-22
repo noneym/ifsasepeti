@@ -30,7 +30,7 @@
     </div>
     <div class="border-t border-ifsa-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-xs text-ifsa-muted flex flex-wrap items-center justify-between gap-2">
-            <span>© {{ date('Y') }} ifsasepeti.com — Tüm hakları saklıdır.</span>
+            <span>© {{ date('Y') }} ifsasepeti.com - Tüm hakları saklıdır.</span>
             <span>Bu site sadece 18+ kullanıcılar içindir.</span>
         </div>
     </div>

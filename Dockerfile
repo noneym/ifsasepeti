@@ -97,7 +97,7 @@ RUN mkdir -p storage/framework/{sessions,views,cache,testing} storage/logs boots
     && chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R ug+rwX storage bootstrap/cache
 
-# Optimize Laravel for production (runs on build; safe ones only — env-dependent caches run at boot)
+# Optimize Laravel for production (runs on build; safe ones only - env-dependent caches run at boot)
 RUN php artisan package:discover --ansi || true
 
 # Entry point: run migrations + cache configs on startup, then Apache
