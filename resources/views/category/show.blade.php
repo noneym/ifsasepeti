@@ -36,9 +36,7 @@
                                 {{ mb_substr($site->name, 0, 1) }}
                             </span>
                         @endif
-                        <a href="{{ route('site.go', $site->slug) }}"
-                           target="_blank"
-                           rel="noopener nofollow"
+                        <a href="{{ route('site.show', $site->slug) }}"
                            class="flex-1 font-semibold text-ifsa-ink hover:text-ifsa-orange truncate">
                             {{ $site->name }}
                         </a>

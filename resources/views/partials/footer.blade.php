@@ -24,6 +24,7 @@
                 <li><a href="{{ url('/link-degisimi') }}" class="hover:text-ifsa-orange">Link Değişimi</a></li>
                 <li><a href="{{ url('/gizlilik') }}" class="hover:text-ifsa-orange">Gizlilik</a></li>
                 <li><a href="{{ url('/sartlar') }}" class="hover:text-ifsa-orange">Şartlar</a></li>
+                <li><a href="{{ url('/sikayet') }}" class="hover:text-rose-600">Şikayet & İhbar</a></li>
             </ul>
         </div>
     </div>

@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'thumio' => [
+        'auth' => env('THUMIO_AUTH'),
+        'options' => env('THUMIO_OPTIONS', 'width/1200/crop/750/png'),
+    ],
+
 ];

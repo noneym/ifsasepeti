@@ -124,5 +124,80 @@ class SiteSeeder extends Seeder
                 );
             }
         }
+
+        $this->seedReviews();
+    }
+
+    protected function seedReviews(): void
+    {
+        $reviews = [
+            'PornHub' => [
+                'tagline' => 'Dünyanın en çok ziyaret edilen ücretsiz tube sitesi',
+                'rating' => 4.50,
+                'review_long' => "PornHub, ücretsiz porno tube siteleri kategorisinin tartışmasız lideri. Milyonlarca video, binlerce stüdyo ortaklığı ve düzgün bir arama deneyimi sunan platform, yetişkin internetinin en bilinen markası haline geldi.\n\nSitenin en güçlü yanı içerik çeşitliliği — amatör çekimlerden büyük prodüksiyonlara, kategori bazlı koleksiyonlardan canlı yayınlara kadar her şey burada. Premium aboneliği almasanız bile ücretsiz olarak HD kalitede izleyebileceğiniz binlerce video var.\n\nReklam yoğunluğu son dönemde arttı ama bir VPN veya reklam engelleyici ile bu sorun büyük ölçüde çözülüyor. Türkiye'den erişim için VPN gerekli.",
+                'pros' => [
+                    'Devasa video kütüphanesi (10M+ video)',
+                    'HD ve 4K kalite seçenekleri',
+                    'Profesyonel stüdyo ortaklıkları',
+                    'Detaylı kategori ve etiket sistemi',
+                    'Ücretsiz hesap ile geçmiş ve favori takibi',
+                ],
+                'cons' => [
+                    'Türkiye\'den VPN olmadan erişilemiyor',
+                    'Reklam yoğunluğu zaman zaman fazla',
+                ],
+            ],
+            'Brazzers' => [
+                'tagline' => 'Premium HD prodüksiyonun standardı',
+                'rating' => 4.70,
+                'review_long' => "Brazzers, premium yetişkin içerik denildiğinde akla ilk gelen markadır. Yüksek prodüksiyon değerleri, tanınmış oyuncular ve haftalık güncellenen video kütüphanesi ile yıllardır sektörün öncüsü.\n\nAylık abonelik tek bir site değil; MILF Hunter, Big Tits at School, Real Wife Stories gibi 30+ tematik kanalın hepsine erişim sağlıyor. Tüm içerik 4K destekli, mobile uyumlu ve uygulamasıyla offline indirilebilir.\n\nÜcretli olması bir engel olarak görülebilir ama deneme paketi ve uzun dönemli indirimlerle giriş maliyeti makul seviyede.",
+                'pros' => [
+                    '30+ tematik kanal tek abonelikle',
+                    'Tüm içerik 4K Ultra HD',
+                    'Mobil uygulama ve offline indirme',
+                    'Reklam yok — temiz arayüz',
+                    'Düzenli haftalık güncellemeler',
+                ],
+                'cons' => [
+                    'Aylık ücret diğer premium sitelere göre orta-üst seviye',
+                    'Ücretsiz deneme süresi kısıtlı',
+                ],
+            ],
+            'Candy AI' => [
+                'tagline' => 'AI ile özelleştirilebilir sanal partner ve sohbet',
+                'rating' => 4.30,
+                'review_long' => "Candy AI, son birkaç yılda hızla yükselen AI tabanlı yetişkin sohbet ve içerik üretici platformlarının önde gelenlerinden. Kullanıcı kendi sanal karakterini tasarlıyor — saç rengi, vücut tipi, kişilik özellikleri seçilebiliyor — ve bu karakterle metin, sesli ve görüntülü etkileşime giriyor.\n\nUygulama tamamen rıza temelli yapay zeka karakterleriyle çalışıyor; gerçek bir kişiyi simüle etmiyor. Görsel kalite hızla iyileşiyor, sohbet doğal ve uzun süreli hafıza özelliği sayesinde karakter sizi hatırlıyor.\n\nÜcretsiz versiyonda günlük mesaj limiti var; premium aboneler sınırsız mesaj, sınırsız görsel üretimi ve ses mesajı gönderme özelliklerine erişiyor.",
+                'pros' => [
+                    'Tamamen özelleştirilebilir AI karakterler',
+                    'Uzun süreli sohbet hafızası',
+                    'Görsel ve sesli mesajlaşma',
+                    'NSFW içerik açık (premium)',
+                    'Mobil uyumlu arayüz',
+                ],
+                'cons' => [
+                    'Ücretsiz versiyonda günlük limit var',
+                    'Görsel üretimi bazen yavaşlayabiliyor',
+                ],
+            ],
+            'CamSoda' => [
+                'tagline' => 'Yenilikçi etkileşim özellikleriyle canlı kamera platformu',
+                'rating' => 4.10,
+                'review_long' => "CamSoda, canlı yayın yapan modellerle gerçek zamanlı etkileşim sunan bir webcam platformu. Sektörün diğer büyük oyuncularına göre daha agresif bir bonus sistemi ve düşük token fiyatlarıyla dikkat çekiyor.\n\nPlatformun en sevilen özelliği ücretsiz olarak izlenebilen geniş bir genel yayın havuzu — kayıt olmadan bile birçok modeli izleyebiliyorsunuz. Token aldığınızda bahşiş bırakabiliyor, özel oda açabiliyor veya kontrollü oyuncak özelliklerine erişebiliyorsunuz.\n\nMobil deneyim oldukça akıcı, çok kameralı görünüm desteği var ve sık sık ünlü porno yıldızlarının özel yayınlarına ev sahipliği yapıyor.",
+                'pros' => [
+                    'Ücretsiz genel yayın izleme',
+                    'Token fiyatları rakiplere göre uygun',
+                    'Mobil uyumlu, çok kameralı görünüm',
+                    'Ünlü porno yıldızlarının özel yayınları',
+                ],
+                'cons' => [
+                    'Bazı modellerin oda fiyatı pahalı',
+                    'Türkiye\'den ödeme zaman zaman sorunlu',
+                ],
+            ],
+        ];
+
+        foreach ($reviews as $name => $fields) {
+            Site::where('name', $name)->update($fields);
+        }
     }
 }

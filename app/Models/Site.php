@@ -24,6 +24,8 @@ class Site extends Model
         'click_count' => 'integer',
         'sort_order' => 'integer',
         'rating' => 'decimal:2',
+        'pros' => 'array',
+        'cons' => 'array',
     ];
 
     protected static function booted(): void
@@ -57,6 +59,25 @@ class Site extends Model
     public function clicks(): HasMany
     {
         return $this->hasMany(SiteClick::class);
+    }
+
+    public function getScreenshotUrlAttribute(): ?string
+    {
+        if ($this->screenshot_path) {
+            return asset('storage/'.$this->screenshot_path);
+        }
+        $auth = config('services.thumio.auth');
+        if (! $auth || ! $this->url) {
+            return null;
+        }
+        $options = trim((string) config('services.thumio.options'), '/');
+        $optionsPath = $options ? '/'.$options : '';
+        return 'https://image.thum.io/get/auth/'.$auth.$optionsPath.'/'.$this->url;
+    }
+
+    public function getRatingFilledAttribute(): int
+    {
+        return (int) floor((float) ($this->rating ?? 0));
     }
 
     public function getBadgesAttribute(): array

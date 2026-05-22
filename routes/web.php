@@ -1,7 +1,16 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SiteController;
+use App\Livewire\Admin\AuthLogin;
+use App\Livewire\Admin\CategoryEdit;
+use App\Livewire\Admin\CategoryList;
+use App\Livewire\Admin\Dashboard as AdminDashboard;
+use App\Livewire\Admin\LinkExchangeList;
+use App\Livewire\Admin\SiteEdit;
+use App\Livewire\Admin\SiteList;
+use App\Livewire\Admin\UserList;
 use App\Livewire\HomePage;
 use Illuminate\Support\Facades\Route;
 
@@ -9,9 +18,34 @@ Route::get('/', HomePage::class)->name('home');
 
 Route::get('/kategori/{slug}', [CategoryController::class, 'show'])->name('category.show');
 
+Route::get('/inceleme/{slug}', [SiteController::class, 'show'])->name('site.show');
 Route::get('/git/{slug}', [SiteController::class, 'go'])->name('site.go');
 
 Route::view('/iletisim', 'pages.contact')->name('contact');
 Route::view('/link-degisimi', 'pages.link-exchange')->name('link-exchange');
 Route::view('/gizlilik', 'pages.privacy')->name('privacy');
 Route::view('/sartlar', 'pages.terms')->name('terms');
+Route::view('/sikayet', 'pages.complaint')->name('complaint');
+
+// Admin
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/login', AuthLogin::class)->name('login');
+
+    Route::middleware('auth')->group(function () {
+        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+
+        Route::get('/', AdminDashboard::class)->name('dashboard');
+
+        Route::get('/sites', SiteList::class)->name('sites');
+        Route::get('/sites/create', SiteEdit::class)->name('site.create');
+        Route::get('/sites/{site}/edit', SiteEdit::class)->name('site.edit');
+
+        Route::get('/categories', CategoryList::class)->name('categories');
+        Route::get('/categories/create', CategoryEdit::class)->name('category.create');
+        Route::get('/categories/{category}/edit', CategoryEdit::class)->name('category.edit');
+
+        Route::get('/link-exchanges', LinkExchangeList::class)->name('link-exchanges');
+
+        Route::get('/users', UserList::class)->name('users');
+    });
+});
