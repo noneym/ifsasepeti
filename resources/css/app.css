@@ -43,26 +43,51 @@
     }
 }
 
-/* Hero mascot - peeks out from BEHIND the top-right card.
-   Bottom dips into the first row but cards (z-10) cover it. */
+/* Hero mascot - adaptive across breakpoints.
+   Mobile: small, sits top-right inside the header.
+   lg+:    larger, peeks down BEHIND the top-right card of the grid. */
 .hero-mascot {
     position: absolute;
-    right: 0.5rem;
-    top: -1.5rem;
-    height: 16rem;
-    width: auto;
+    pointer-events: none;
+    user-select: none;
     z-index: 1;
-    transform: rotate(2deg);
+    height: 6.5rem;            /* ~104px mobile */
+    width: auto;
+    top: 2.5rem;
+    right: -0.5rem;
+    transform: rotate(4deg);
 }
-@media (min-width: 1280px) {
+@media (min-width: 640px) {    /* sm */
     .hero-mascot {
-        right: 1rem;
-        top: -2rem;
+        height: 9rem;
+        top: 1.5rem;
+        right: 0.25rem;
+    }
+}
+@media (min-width: 768px) {    /* md */
+    .hero-mascot {
+        height: 11rem;
+        top: 1rem;
+        right: 0.5rem;
+    }
+}
+@media (min-width: 1024px) {   /* lg - now starts peeking into grid */
+    .hero-mascot {
+        height: 16rem;
+        top: -1.5rem;
+        right: 0.5rem;
+        transform: rotate(2deg);
+    }
+}
+@media (min-width: 1280px) {   /* xl */
+    .hero-mascot {
         height: 15rem;
+        top: -2rem;
+        right: 1rem;
     }
 }
 
-/* Grid sits above the mascot so cards cover the lower half of it */
+/* Grid sits above the mascot so cards cover the lower half of it on lg+ */
 .grid-cards-wrap {
     position: relative;
     z-index: 10;

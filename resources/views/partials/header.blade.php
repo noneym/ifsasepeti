@@ -68,9 +68,9 @@
             </form>
         </div>
 
-        {{-- Hero mascot: positioned absolutely so it peeks down into the top-right card of the grid --}}
+        {{-- Hero mascot: top-right of header on mobile, peeks behind grid on lg+ --}}
         <img src="{{ asset('img/hero-pezo.png') }}"
              alt="Pezo - ifsasepeti maskotu"
-             class="hero-mascot hidden lg:block select-none pointer-events-none drop-shadow-2xl">
+             class="hero-mascot drop-shadow-2xl">
     </div>
 </header>
