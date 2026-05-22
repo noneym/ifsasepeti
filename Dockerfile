@@ -13,8 +13,7 @@ RUN npm ci --no-audit --no-fund
 COPY vite.config.js tailwind.config.js postcss.config.js ./
 COPY resources ./resources
 COPY public ./public
-COPY app/Livewire ./app/Livewire
-COPY app/View ./app/View
+COPY app ./app
 
 RUN npm run build
 
