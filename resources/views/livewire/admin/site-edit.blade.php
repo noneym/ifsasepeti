@@ -58,7 +58,7 @@
                 <div>
                     <label class="block text-xs font-bold mb-1.5">Logo dosyası</label>
                     @if ($existing_logo_path)
-                        <img src="{{ asset('storage/'.$existing_logo_path) }}" class="h-12 w-12 rounded mb-2 object-cover bg-ifsa-bg">
+                        <img src="{{ \Storage::disk(config('filesystems.default'))->url($existing_logo_path) }}" class="h-12 w-12 rounded mb-2 object-cover bg-ifsa-bg">
                     @endif
                     <input type="file" wire:model="logo_upload" accept="image/*"
                            class="w-full text-xs file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-ifsa-bg file:text-xs file:font-semibold">
@@ -67,7 +67,7 @@
                 <div>
                     <label class="block text-xs font-bold mb-1.5">Ekran görüntüsü (boşsa thum.io üretir)</label>
                     @if ($existing_screenshot_path)
-                        <img src="{{ asset('storage/'.$existing_screenshot_path) }}" class="h-12 w-20 rounded mb-2 object-cover bg-ifsa-bg">
+                        <img src="{{ \Storage::disk(config('filesystems.default'))->url($existing_screenshot_path) }}" class="h-12 w-20 rounded mb-2 object-cover bg-ifsa-bg">
                     @endif
                     <input type="file" wire:model="screenshot_upload" accept="image/*"
                            class="w-full text-xs file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-ifsa-bg file:text-xs file:font-semibold">

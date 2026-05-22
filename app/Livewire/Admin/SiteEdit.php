@@ -151,11 +151,13 @@ class SiteEdit extends Component
             'meta_description' => $this->meta_description ?: null,
         ];
 
+        $disk = config('filesystems.default');
+
         if ($this->logo_upload) {
-            $data['logo_path'] = $this->logo_upload->store('logos', 'public');
+            $data['logo_path'] = $this->logo_upload->store('logos', $disk);
         }
         if ($this->screenshot_upload) {
-            $data['screenshot_path'] = $this->screenshot_upload->store('screenshots', 'public');
+            $data['screenshot_path'] = $this->screenshot_upload->store('screenshots', $disk);
         }
 
         if ($this->site && $this->site->exists) {

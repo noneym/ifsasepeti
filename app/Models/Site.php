@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Site extends Model
@@ -64,7 +65,7 @@ class Site extends Model
     public function getScreenshotUrlAttribute(): ?string
     {
         if ($this->screenshot_path) {
-            return asset('storage/'.$this->screenshot_path);
+            return Storage::disk(config('filesystems.default'))->url($this->screenshot_path);
         }
         $auth = config('services.thumio.auth');
         if (! $auth || ! $this->url) {
@@ -73,6 +74,14 @@ class Site extends Model
         $options = trim((string) config('services.thumio.options'), '/');
         $optionsPath = $options ? '/'.$options : '';
         return 'https://image.thum.io/get/auth/'.$auth.$optionsPath.'/'.$this->url;
+    }
+
+    public function getLogoUrlAttribute(): ?string
+    {
+        if (! $this->logo_path) {
+            return null;
+        }
+        return Storage::disk(config('filesystems.default'))->url($this->logo_path);
     }
 
     public function getRatingFilledAttribute(): int
