@@ -4,10 +4,10 @@
 @section('description', $site->meta_description ?: $site->tagline ?: ('İncelemesi, artıları, eksileri ve linki - '.$site->name))
 
 @section('content')
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 grid-cards-wrap">
 
         {{-- Breadcrumb --}}
-        <nav class="text-xs text-ifsa-muted mb-4 flex items-center gap-1.5">
+        <nav class="text-[11px] text-ifsa-muted mb-2 flex items-center gap-1.5 max-w-[60%] lg:max-w-full">
             <a href="{{ url('/') }}" class="hover:text-ifsa-orange">ifsasepeti</a>
             <span>›</span>
             <a href="{{ route('category.show', $site->category->slug) }}" class="hover:text-ifsa-orange">{{ $site->category->name }}</a>

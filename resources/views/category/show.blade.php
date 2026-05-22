@@ -4,7 +4,7 @@
 @section('description', $category->subtitle ?? 'En iyi '.$category->name.' listesi - ifsasepeti.com')
 
 @section('content')
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid-cards-wrap">
         <nav class="text-xs text-ifsa-muted mb-3">
             <a href="{{ url('/') }}" class="hover:text-ifsa-orange">Anasayfa</a>
             <span class="mx-1">/</span>
