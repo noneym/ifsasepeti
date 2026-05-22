@@ -11,11 +11,13 @@
         <div class="flex items-start justify-between gap-4">
             {{-- Logo left --}}
             <a href="{{ url('/') }}" class="flex-shrink-0 group inline-flex items-center gap-3 select-none">
-                {{-- Basket icon (sepet) --}}
-                <span class="relative inline-flex items-center justify-center h-12 w-12 sm:h-14 sm:w-14 rounded-2xl bg-gradient-to-br from-ifsa-yellow via-ifsa-orange to-ifsa-red shadow-md rotate-[-6deg] group-hover:rotate-0 transition-transform">
-                    <svg class="w-7 h-7 sm:w-8 sm:h-8 text-white drop-shadow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M5.522 7H4a1 1 0 0 0 0 2h.39l1.214 10.114A2 2 0 0 0 7.59 21h8.82a2 2 0 0 0 1.987-1.886L19.61 9H20a1 1 0 1 0 0-2h-1.522L15.83 2.553a1 1 0 1 0-1.789.894L16.293 7H7.707l2.252-4.553a1 1 0 0 0-1.789-.894L5.522 7Zm3.978 5a1 1 0 1 1 2 0v4a1 1 0 1 1-2 0v-4Zm4 0a1 1 0 1 1 2 0v4a1 1 0 1 1-2 0v-4Z"/>
-                    </svg>
+                {{-- Mascot face badge --}}
+                <span class="relative inline-flex items-center justify-center h-14 w-14 sm:h-16 sm:w-16 group-hover:rotate-0 rotate-[-6deg] transition-transform">
+                    <span class="absolute inset-0 rounded-2xl bg-gradient-to-br from-ifsa-yellow via-ifsa-orange to-ifsa-red shadow-md"></span>
+                    <img src="{{ asset('img/logo-mark.png') }}"
+                         alt=""
+                         class="relative h-12 w-12 sm:h-14 sm:w-14 object-contain drop-shadow"
+                         loading="eager">
                     {{-- Sparkle dot --}}
                     <span class="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-white border-2 border-ifsa-red"></span>
                 </span>

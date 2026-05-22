@@ -7,8 +7,8 @@
     <meta name="description" content="@yield('description', 'ifsasepeti.com - Türkiye\'nin en kapsamlı yetişkin site dizini. Premium, tube, AI, canlı kamera, OnlyFans ve daha fazlasını keşfet.')">
     <title>@yield('title', 'ifsasepeti.com - En İyi Yetişkin Site Dizini')</title>
 
-    <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('img/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/logo-mark.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('img/logo-mark.png') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
