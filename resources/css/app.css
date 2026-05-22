@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        @apply text-ifsa-ink;
+    }
+    body {
+        @apply bg-ifsa-bg font-sans antialiased;
+    }
+}
+
+@layer components {
+    .card {
+        @apply bg-ifsa-card border border-ifsa-border rounded-2xl shadow-card overflow-hidden;
+    }
+    .card-header {
+        @apply px-5 py-4 border-b border-ifsa-border flex items-center gap-2 text-base font-bold uppercase tracking-wide;
+    }
+    .badge {
+        @apply inline-flex items-center justify-center text-[10px] font-bold rounded px-1.5 py-0.5 leading-none;
+    }
+    .badge-ai {
+        @apply bg-amber-200 text-amber-900;
+    }
+    .badge-new {
+        @apply bg-rose-200 text-rose-900;
+    }
+    .badge-premium {
+        @apply bg-violet-200 text-violet-900;
+    }
+    .site-row {
+        @apply flex items-center gap-2 px-5 py-2 hover:bg-ifsa-bg/60 transition-colors;
+    }
+    .site-row .num {
+        @apply text-[11px] text-ifsa-muted w-6 text-right tabular-nums;
+    }
+    .btn-more {
+        @apply block w-[calc(100%-1.5rem)] mx-3 my-3 text-center py-3 rounded-xl bg-emerald-500 text-white text-sm font-semibold hover:bg-emerald-600 transition-colors;
+    }
+}
