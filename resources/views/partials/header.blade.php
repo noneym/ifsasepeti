@@ -55,12 +55,12 @@
             <div class="hidden lg:block w-44 flex-shrink-0" aria-hidden="true"></div>
         </div>
 
-        {{-- Row 2: search bar --}}
-        <div class="mt-4 max-w-xl">
+        {{-- Row 2: search bar (narrower on mobile so the mascot has room) --}}
+        <div class="mt-4 w-3/5 sm:w-auto sm:max-w-xl">
             <form action="{{ url('/ara') }}" method="get" class="relative">
                 <input type="text"
                        name="q"
-                       placeholder="En iyi 1000+ porno sitesini ara..."
+                       placeholder="Site ara..."
                        class="w-full rounded-full border border-ifsa-border bg-white px-5 py-2.5 pr-12 text-sm placeholder:text-ifsa-muted focus:border-ifsa-orange focus:ring-2 focus:ring-ifsa-orange/30 focus:outline-none">
                 <button type="submit" class="absolute right-1.5 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-ifsa-orange text-white flex items-center justify-center hover:bg-ifsa-red transition">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
