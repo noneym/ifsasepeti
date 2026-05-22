@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\SitemapController;
 use App\Livewire\Admin\AuthLogin;
 use App\Livewire\Admin\CategoryEdit;
 use App\Livewire\Admin\CategoryList;
@@ -26,6 +27,9 @@ Route::view('/link-degisimi', 'pages.link-exchange')->name('link-exchange');
 Route::view('/gizlilik', 'pages.privacy')->name('privacy');
 Route::view('/sartlar', 'pages.terms')->name('terms');
 Route::view('/sikayet', 'pages.complaint')->name('complaint');
+
+// SEO
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 // Admin
 Route::prefix('admin')->name('admin.')->group(function () {

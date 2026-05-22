@@ -1,7 +1,70 @@
 @extends('layouts.app')
 
-@section('title', ($site->meta_title ?: $site->name.' İnceleme - ifsasepeti.com'))
-@section('description', $site->meta_description ?: $site->tagline ?: ('İncelemesi, artıları, eksileri ve linki - '.$site->name))
+@section('title', ($site->meta_title ?: $site->name.' İnceleme '.now()->format('Y').' - Artıları, Eksileri ve Puanı - ifsasepeti.com'))
+@section('description', $site->meta_description ?: ($site->tagline ? $site->tagline.'. '.$site->name.' incelemesi, artıları, eksileri, kullanıcı puanı ve direkt link.' : 'İncelemesi, artıları, eksileri ve linki - '.$site->name))
+@section('canonical', route('site.show', $site->slug))
+@section('og_type', 'article')
+@section('og_image', $site->screenshot_url ?: asset('img/logo.png'))
+
+@section('json_ld')
+    @php
+        $reviewItem = [
+            '@type' => 'Review',
+            'itemReviewed' => [
+                '@type' => 'WebSite',
+                'name' => $site->name,
+                'url' => $site->url,
+                'inLanguage' => 'tr',
+            ],
+            'author' => [
+                '@type' => 'Organization',
+                'name' => 'ifsasepeti.com',
+            ],
+            'datePublished' => optional($site->created_at)->toDateString(),
+            'dateModified' => optional($site->updated_at)->toDateString(),
+            'reviewBody' => $site->review_long ? mb_substr(strip_tags($site->review_long), 0, 5000) : $site->tagline,
+        ];
+        if ($site->rating) {
+            $reviewItem['reviewRating'] = [
+                '@type' => 'Rating',
+                'ratingValue' => (string) $site->rating,
+                'bestRating' => '5',
+                'worstRating' => '1',
+            ];
+        }
+        if (! empty($site->pros)) {
+            $reviewItem['positiveNotes'] = [
+                '@type' => 'ItemList',
+                'itemListElement' => collect($site->pros)->map(fn ($p, $i) => [
+                    '@type' => 'ListItem', 'position' => $i + 1, 'name' => $p,
+                ])->all(),
+            ];
+        }
+        if (! empty($site->cons)) {
+            $reviewItem['negativeNotes'] = [
+                '@type' => 'ItemList',
+                'itemListElement' => collect($site->cons)->map(fn ($c, $i) => [
+                    '@type' => 'ListItem', 'position' => $i + 1, 'name' => $c,
+                ])->all(),
+            ];
+        }
+        $siteLd = [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                [
+                    '@type' => 'BreadcrumbList',
+                    'itemListElement' => [
+                        ['@type' => 'ListItem', 'position' => 1, 'name' => 'Anasayfa', 'item' => url('/')],
+                        ['@type' => 'ListItem', 'position' => 2, 'name' => $site->category->name, 'item' => route('category.show', $site->category->slug)],
+                        ['@type' => 'ListItem', 'position' => 3, 'name' => $site->name.' İnceleme', 'item' => route('site.show', $site->slug)],
+                    ],
+                ],
+                $reviewItem,
+            ],
+        ];
+    @endphp
+    <script type="application/ld+json">{!! json_encode($siteLd, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+@endsection
 
 @section('content')
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 sm:py-3 grid-cards-wrap">
@@ -27,7 +90,7 @@
                         <span class="ml-2 text-xs text-ifsa-muted truncate flex-1">{{ parse_url($site->url, PHP_URL_HOST) }}</span>
                     </div>
                     @if ($site->screenshot_url)
-                        <a href="{{ route('site.go', $site->slug) }}" target="_blank" rel="noopener nofollow" class="block bg-ifsa-bg relative">
+                        <a href="{{ route('site.go', $site->slug) }}" target="_blank" rel="noopener nofollow sponsored" class="block bg-ifsa-bg relative">
                             <img src="{{ $site->screenshot_url }}"
                                  alt="{{ $site->name }} ekran görüntüsü"
                                  class="w-full h-auto aspect-[4/3] object-cover"
@@ -45,13 +108,13 @@
 
                     <a href="{{ route('site.go', $site->slug) }}"
                        target="_blank"
-                       rel="noopener nofollow"
+                       rel="noopener nofollow sponsored"
                        class="block bg-emerald-500 hover:bg-emerald-600 text-white text-center font-bold py-3.5 text-sm">
                         Siteye Git: {{ $site->name }} →
                     </a>
 
                     <div class="px-4 py-3 text-center text-xs text-ifsa-muted">
-                        <a href="{{ $site->url }}" target="_blank" rel="noopener nofollow" class="hover:text-ifsa-orange break-all">{{ $site->url }}</a>
+                        <a href="{{ $site->url }}" target="_blank" rel="noopener nofollow sponsored" class="hover:text-ifsa-orange break-all">{{ $site->url }}</a>
                     </div>
                 </div>
 
@@ -84,7 +147,7 @@
                         @endif
                         {{ $site->name }} İnceleme
                     </h1>
-                    <a href="{{ $site->url }}" target="_blank" rel="noopener nofollow"
+                    <a href="{{ $site->url }}" target="_blank" rel="noopener nofollow sponsored"
                        class="text-sm text-ifsa-muted hover:text-ifsa-orange break-all">
                         {{ $site->url }}
                     </a>
