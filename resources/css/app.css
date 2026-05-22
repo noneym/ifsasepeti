@@ -42,3 +42,28 @@
         @apply block w-[calc(100%-1.5rem)] mx-3 my-3 text-center py-3 rounded-xl bg-emerald-500 text-white text-sm font-semibold hover:bg-emerald-600 transition-colors;
     }
 }
+
+/* Hero mascot — peeks out from BEHIND the top-right card.
+   Bottom dips into the first row but cards (z-10) cover it. */
+.hero-mascot {
+    position: absolute;
+    right: 0.5rem;
+    top: -1.5rem;
+    height: 16rem;
+    width: auto;
+    z-index: 1;
+    transform: rotate(2deg);
+}
+@media (min-width: 1280px) {
+    .hero-mascot {
+        right: 1rem;
+        top: -2rem;
+        height: 19rem;
+    }
+}
+
+/* Grid sits above the mascot so cards cover the lower half of it */
+.grid-cards-wrap {
+    position: relative;
+    z-index: 10;
+}
