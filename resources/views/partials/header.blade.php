@@ -18,8 +18,6 @@
                          alt=""
                          class="relative h-12 w-12 sm:h-14 sm:w-14 object-contain drop-shadow"
                          loading="eager">
-                    {{-- Sparkle dot --}}
-                    <span class="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-white border-2 border-ifsa-red"></span>
                 </span>
                 <span class="font-display leading-[0.95]">
                     <span class="block text-[28px] sm:text-[34px] md:text-[40px] font-black tracking-tight">
