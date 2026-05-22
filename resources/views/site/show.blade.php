@@ -4,7 +4,7 @@
 @section('description', $site->meta_description ?: $site->tagline ?: ('İncelemesi, artıları, eksileri ve linki - '.$site->name))
 
 @section('content')
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 grid-cards-wrap">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 sm:py-3 grid-cards-wrap">
 
         {{-- Breadcrumb --}}
         <nav class="text-[11px] text-ifsa-muted mb-2 flex items-center gap-1.5 max-w-[60%] lg:max-w-full">

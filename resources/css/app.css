@@ -51,10 +51,10 @@
     pointer-events: none;
     user-select: none;
     z-index: 1;
-    height: 6.5rem;            /* ~104px mobile */
+    height: 12rem;             /* ~192px mobile - tall enough to dip behind the first card */
     width: auto;
-    top: 4.5rem;
-    right: -0.5rem;
+    top: 1.5rem;
+    right: -0.75rem;
     transform: rotate(4deg);
 }
 @media (min-width: 640px) {    /* sm */
