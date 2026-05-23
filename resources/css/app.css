@@ -46,7 +46,7 @@
                dark:hover:bg-slate-800/60;
     }
     .site-row .num {
-        @apply text-[11px] text-ifsa-muted w-6 text-right tabular-nums;
+        @apply text-[11px] text-ifsa-muted w-6 text-right tabular-nums dark:text-slate-500;
     }
     .btn-more {
         @apply block w-[calc(100%-1.5rem)] mx-3 my-3 text-center py-3 rounded-xl bg-emerald-500 text-white text-sm font-semibold hover:bg-emerald-600 transition-colors;

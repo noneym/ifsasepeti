@@ -37,8 +37,8 @@
     </div>
 
     {{-- SEO content block at the bottom --}}
-    <section class="mt-10 prose prose-sm max-w-none text-ifsa-muted">
-        <h2 class="text-base font-display font-bold text-ifsa-ink">ifsasepeti.com Hakkında</h2>
+    <section class="mt-10 prose prose-sm dark:prose-invert max-w-none text-ifsa-ink/80 dark:text-slate-300">
+        <h2 class="text-base font-display font-bold text-ifsa-ink dark:text-slate-100">ifsasepeti.com Hakkında</h2>
         <p>
             ifsasepeti.com, Türkiye'de yetişkin site dizini ihtiyacına en kapsamlı yanıtı sunan bir inceleme
             ve sıralama platformudur. Sitelerimizin tamamı yasal ve rıza temelli içerik kuralına uyar;
@@ -56,7 +56,7 @@
             sayfamızı, şikayet için <a href="{{ url('/sikayet') }}" class="text-ifsa-orange font-semibold">şikayet kanalımızı</a>
             kullanabilirsiniz.
         </p>
-        <p class="text-xs italic">
+        <p class="text-xs italic text-ifsa-muted dark:text-slate-500">
             <strong>18+ Uyarı:</strong> Bu site yalnızca 18 yaşından büyük kullanıcılar içindir.
         </p>
     </section>
