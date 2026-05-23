@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#FFD23F">
+    {{-- Theme bootstrap (no-FOUC): set 'dark' class before any paint --}}
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
     <meta name="rating" content="adult">
     <meta name="robots" content="@yield('robots', 'index, follow, max-image-preview:large, max-snippet:-1')">
     <meta name="format-detection" content="telephone=no">

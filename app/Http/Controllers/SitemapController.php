@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\Site;
 use Illuminate\Http\Response;
 
@@ -48,6 +49,22 @@ class SitemapController extends Controller
                 'lastmod' => optional($site->updated_at)->toAtomString() ?? now()->toAtomString(),
                 'changefreq' => 'weekly',
                 'priority' => '0.7',
+            ]);
+        }
+
+        // Blog index + posts
+        $urls->push([
+            'loc' => route('blog.index'),
+            'lastmod' => now()->toAtomString(),
+            'changefreq' => 'daily',
+            'priority' => '0.7',
+        ]);
+        foreach (Post::published()->get() as $post) {
+            $urls->push([
+                'loc' => $post->url,
+                'lastmod' => optional($post->updated_at)->toAtomString() ?? now()->toAtomString(),
+                'changefreq' => 'monthly',
+                'priority' => '0.6',
             ]);
         }
 

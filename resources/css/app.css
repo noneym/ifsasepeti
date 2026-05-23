@@ -11,29 +11,39 @@
     body {
         @apply bg-ifsa-bg font-sans antialiased;
     }
+    /* Dark theme tokens override */
+    html.dark {
+        @apply text-slate-100;
+    }
+    html.dark body {
+        @apply bg-slate-950;
+    }
 }
 
 @layer components {
     .card {
-        @apply bg-ifsa-card border border-ifsa-border rounded-2xl shadow-card overflow-hidden;
+        @apply bg-ifsa-card border border-ifsa-border rounded-2xl shadow-card overflow-hidden
+               dark:bg-slate-900 dark:border-slate-800;
     }
     .card-header {
-        @apply px-5 py-4 border-b border-ifsa-border flex items-center gap-2 text-base font-bold uppercase tracking-wide;
+        @apply px-5 py-4 border-b border-ifsa-border flex items-center gap-2 text-base font-bold uppercase tracking-wide
+               dark:border-slate-800;
     }
     .badge {
         @apply inline-flex items-center justify-center text-[10px] font-bold rounded px-1.5 py-0.5 leading-none;
     }
     .badge-ai {
-        @apply bg-amber-200 text-amber-900;
+        @apply bg-amber-200 text-amber-900 dark:bg-amber-500/20 dark:text-amber-300;
     }
     .badge-new {
-        @apply bg-rose-200 text-rose-900;
+        @apply bg-rose-200 text-rose-900 dark:bg-rose-500/20 dark:text-rose-300;
     }
     .badge-premium {
-        @apply bg-violet-200 text-violet-900;
+        @apply bg-violet-200 text-violet-900 dark:bg-violet-500/20 dark:text-violet-300;
     }
     .site-row {
-        @apply flex items-center gap-2 px-5 py-2 hover:bg-ifsa-bg/60 transition-colors;
+        @apply flex items-center gap-2 px-5 py-2 hover:bg-ifsa-bg/60 transition-colors
+               dark:hover:bg-slate-800/60;
     }
     .site-row .num {
         @apply text-[11px] text-ifsa-muted w-6 text-right tabular-nums;

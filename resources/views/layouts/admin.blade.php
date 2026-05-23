@@ -33,6 +33,7 @@
                         ['admin.dashboard', '📊', 'Dashboard', null],
                         ['admin.sites', '🗂️', 'Siteler', null],
                         ['admin.categories', '🏷️', 'Kategoriler', null],
+                        ['admin.posts', '📝', 'Yazılar', null],
                         ['admin.link-exchanges', '🔗', 'Link Değişimleri', \App\Models\LinkExchange::where('status','pending')->count() ?: null],
                         ['admin.users', '👤', 'Kullanıcılar', null],
                     ] as [$route, $icon, $label, $badge])
