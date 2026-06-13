@@ -35,6 +35,16 @@
                 @endforeach
             </li>
         @endforeach
+
+        {{-- CTA: list your own site --}}
+        <li>
+            <a href="{{ route('link-exchange') }}"
+               class="flex items-center gap-2 px-5 py-2.5 mt-1 border-t border-dashed border-ifsa-border dark:border-slate-700 text-ifsa-muted dark:text-slate-400 hover:text-ifsa-orange dark:hover:text-ifsa-orange hover:bg-ifsa-bg/60 dark:hover:bg-slate-800/60 transition-colors group/add">
+                <span class="w-6 h-6 rounded-full border border-dashed border-ifsa-muted/50 dark:border-slate-600 flex items-center justify-center text-base leading-none group-hover/add:border-ifsa-orange group-hover/add:text-ifsa-orange transition-colors">+</span>
+                <span class="flex-1 text-sm font-semibold">Siteni buraya ekle</span>
+                <svg class="w-3.5 h-3.5 flex-shrink-0 opacity-0 group-hover/add:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </li>
     </ol>
 
     <a href="{{ route('category.show', $category->slug) }}"
