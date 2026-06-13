@@ -51,13 +51,13 @@
                             title="Tema değiştir"
                             aria-label="Tema değiştir">
                         <svg class="w-4 h-4 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-                        <svg class="w-4 h-4 hidden dark:block text-amber-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.95 2.05a1 1 0 010 1.414l-.707.707A1 1 0 1112.83 4.757l.707-.707a1 1 0 011.414 0zM18 9a1 1 0 011 1v0a1 1 0 11-2 0v0a1 1 0 011-1zm-2.343 5.243a1 1 0 011.414 0l.707.707a1 1 0 11-1.414 1.414l-.707-.707a1 1 0 010-1.414zM10 14a4 4 0 100-8 4 4 0 000 8zm-6 4a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm-1-9a1 1 0 011-1h0a1 1 0 110 2H4a1 1 0 01-1-1zm1.05-4.95a1 1 0 011.414 0l.707.707A1 1 0 014.757 5.171L4.05 4.464a1 1 0 010-1.414z"/></svg>
+                        <svg class="w-4 h-4 hidden dark:block text-amber-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
                     </button>
                 </div>
             </div>
 
             {{-- Spacer to reserve room for the absolutely-positioned mascot --}}
-            <div class="hidden lg:block w-44 flex-shrink-0" aria-hidden="true"></div>
+            <div class="hidden md:block w-28 lg:w-44 flex-shrink-0" aria-hidden="true"></div>
         </div>
 
         {{-- Row 2: search bar (extends nearly full width; mascot peeks over the right edge) --}}
