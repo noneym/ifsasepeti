@@ -1,13 +1,18 @@
 <div class="card flex flex-col">
-    <div class="card-header" style="color: {{ $category->accent_color }};">
+    <a href="{{ route('category.show', $category->slug) }}"
+       class="card-header group/header hover:bg-ifsa-bg/50 dark:hover:bg-slate-800/40 transition-colors"
+       style="color: {{ $category->accent_color }};"
+       title="{{ $category->name }} kategorisini gör">
         @include('partials.category-icon', ['icon' => $category->icon, 'color' => $category->accent_color])
-        <span class="text-ifsa-ink dark:text-slate-100 truncate">{{ $category->name }}</span>
-    </div>
+        <span class="text-ifsa-ink dark:text-slate-100 truncate group-hover/header:text-ifsa-orange transition-colors">{{ $category->name }}</span>
+        <svg class="w-3.5 h-3.5 ml-auto flex-shrink-0 text-ifsa-muted dark:text-slate-500 opacity-0 group-hover/header:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </a>
 
     @if ($category->subtitle)
-        <div class="px-5 pt-3 pb-2 text-xs text-ifsa-muted dark:text-slate-400 leading-relaxed">
+        <a href="{{ route('category.show', $category->slug) }}"
+           class="block px-5 pt-3 pb-2 text-xs text-ifsa-muted dark:text-slate-400 leading-relaxed hover:text-ifsa-ink dark:hover:text-slate-300 transition-colors">
             {{ $category->subtitle }}
-        </div>
+        </a>
     @endif
 
     <ol class="flex-1 py-1">
