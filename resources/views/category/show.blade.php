@@ -42,10 +42,11 @@
 
 @section('content')
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid-cards-wrap">
-        <nav aria-label="breadcrumb" class="text-xs text-ifsa-muted mb-3">
-            <a href="{{ url('/') }}" class="hover:text-ifsa-orange">Anasayfa</a>
-            <span class="mx-1">›</span>
-            <span class="text-ifsa-ink">{{ $category->name }}</span>
+        <nav aria-label="breadcrumb"
+             class="text-xs text-ifsa-muted dark:text-slate-500 mb-3 flex items-center gap-1.5 flex-nowrap overflow-hidden whitespace-nowrap pr-24 sm:pr-32 lg:pr-0">
+            <a href="{{ url('/') }}" class="shrink-0 hover:text-ifsa-orange">Anasayfa</a>
+            <span class="shrink-0">›</span>
+            <span class="shrink min-w-0 truncate text-ifsa-ink dark:text-slate-200">{{ $category->name }}</span>
         </nav>
 
         <header class="mb-6">

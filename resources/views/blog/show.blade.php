@@ -58,12 +58,13 @@
 @section('content')
     <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-1 sm:py-3 grid-cards-wrap">
 
-        <nav aria-label="breadcrumb" class="text-[11px] text-ifsa-muted dark:text-slate-500 mb-2 flex items-center gap-1.5 max-w-[60%] lg:max-w-full">
-            <a href="{{ url('/') }}" class="hover:text-ifsa-orange">Anasayfa</a>
-            <span>›</span>
-            <a href="{{ route('blog.index') }}" class="hover:text-ifsa-orange">Blog</a>
-            <span>›</span>
-            <span class="text-ifsa-ink dark:text-slate-200 truncate">{{ Str::limit($post->title, 40) }}</span>
+        <nav aria-label="breadcrumb"
+             class="text-[11px] text-ifsa-muted dark:text-slate-500 mb-2 flex items-center gap-1.5 flex-nowrap overflow-hidden whitespace-nowrap pr-24 sm:pr-32 lg:pr-0">
+            <a href="{{ url('/') }}" class="shrink-0 hover:text-ifsa-orange">Anasayfa</a>
+            <span class="shrink-0">›</span>
+            <a href="{{ route('blog.index') }}" class="shrink-0 hover:text-ifsa-orange">Blog</a>
+            <span class="shrink-0">›</span>
+            <span class="shrink min-w-0 truncate text-ifsa-ink dark:text-slate-200">{{ $post->title }}</span>
         </nav>
 
         <header class="mb-6">

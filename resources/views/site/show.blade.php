@@ -69,13 +69,15 @@
 @section('content')
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 sm:py-3 grid-cards-wrap">
 
-        {{-- Breadcrumb --}}
-        <nav class="text-[11px] text-ifsa-muted dark:text-slate-500 mb-2 flex items-center gap-1.5 max-w-[60%] lg:max-w-full">
-            <a href="{{ url('/') }}" class="hover:text-ifsa-orange">ifsasepeti</a>
-            <span>›</span>
-            <a href="{{ route('category.show', $site->category->slug) }}" class="hover:text-ifsa-orange">{{ $site->category->name }}</a>
-            <span>›</span>
-            <span class="text-ifsa-ink dark:text-slate-200 truncate">{{ $site->name }} İnceleme</span>
+        {{-- Breadcrumb (single line; truncates instead of wrapping under the mascot) --}}
+        <nav aria-label="breadcrumb"
+             class="text-[11px] text-ifsa-muted dark:text-slate-500 mb-2 flex items-center gap-1.5 flex-nowrap overflow-hidden whitespace-nowrap pr-24 sm:pr-32 lg:pr-0">
+            <a href="{{ url('/') }}" class="shrink-0 hover:text-ifsa-orange">ifsasepeti</a>
+            <span class="shrink-0">›</span>
+            <a href="{{ route('category.show', $site->category->slug) }}"
+               class="shrink min-w-0 truncate hover:text-ifsa-orange">{{ $site->category->name }}</a>
+            <span class="shrink-0">›</span>
+            <span class="shrink min-w-0 truncate text-ifsa-ink dark:text-slate-200">{{ $site->name }}</span>
         </nav>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
