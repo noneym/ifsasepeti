@@ -36,4 +36,8 @@ return [
         'options' => env('THUMIO_OPTIONS', 'width/1200/crop/750/png'),
     ],
 
+    'google_analytics' => [
+        'id' => env('GOOGLE_ANALYTICS_ID'),
+    ],
+
 ];
