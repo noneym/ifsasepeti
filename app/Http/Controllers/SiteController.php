@@ -33,19 +33,13 @@ class SiteController extends Controller
             ->where('is_active', true)
             ->firstOrFail();
 
-        $similar = Site::where('category_id', $site->category_id)
-            ->where('id', '!=', $site->id)
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->limit(12)
-            ->get();
+        $similar = $site->category
+            ? $site->category->activeSites()->where('sites.id', '!=', $site->id)->limit(12)->get()
+            : collect();
 
-        $position = Site::where('category_id', $site->category_id)
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->orderBy('id')
-            ->pluck('id')
-            ->search($site->id);
+        $position = $site->category
+            ? $site->category->activeSites()->pluck('sites.id')->search($site->id)
+            : false;
         $position = $position === false ? null : $position + 1;
 
         return view('site.show', compact('site', 'similar', 'position'));

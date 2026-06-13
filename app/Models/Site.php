@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -50,11 +51,25 @@ class Site extends Model
                 $site->slug = $slug;
             }
         });
+
+        // Primary category must always exist in the pivot too
+        static::saved(function (Site $site) {
+            if ($site->category_id) {
+                $site->categories()->syncWithoutDetaching([
+                    $site->category_id => ['sort_order' => $site->sort_order],
+                ]);
+            }
+        });
     }
 
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class)->withPivot('sort_order');
     }
 
     public function clicks(): HasMany

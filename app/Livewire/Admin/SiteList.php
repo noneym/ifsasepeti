@@ -54,7 +54,10 @@ class SiteList extends Component
                   ->orWhere('url', 'like', '%'.$this->search.'%')
                   ->orWhere('slug', 'like', '%'.$this->search.'%');
             }))
-            ->when($this->categoryFilter, fn ($q) => $q->where('category_id', $this->categoryFilter))
+            ->when($this->categoryFilter, fn ($q) => $q->whereHas(
+                'categories',
+                fn ($q2) => $q2->where('categories.id', $this->categoryFilter)
+            ))
             ->when($this->stateFilter === 'active', fn ($q) => $q->where('is_active', true))
             ->when($this->stateFilter === 'inactive', fn ($q) => $q->where('is_active', false))
             ->when($this->stateFilter === 'premium', fn ($q) => $q->where('is_premium', true))

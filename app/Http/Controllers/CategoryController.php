@@ -11,7 +11,7 @@ class CategoryController extends Controller
     {
         $category = Category::where('slug', $slug)->where('is_active', true)->firstOrFail();
 
-        $sites = $category->activeSites()->orderBy('sort_order')->orderBy('id')->get();
+        $sites = $category->activeSites()->get();
 
         return view('category.show', compact('category', 'sites'));
     }

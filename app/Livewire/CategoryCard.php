@@ -14,7 +14,7 @@ class CategoryCard extends Component
     {
         $sites = $this->category->relationLoaded('activeSites')
             ? $this->category->activeSites
-            : $this->category->activeSites()->orderBy('sort_order')->get();
+            : $this->category->activeSites()->get();
 
         $visible = $sites->take($this->visibleCount);
         $remaining = max(0, $sites->count() - $this->visibleCount);

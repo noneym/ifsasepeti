@@ -76,6 +76,9 @@ class SiteEdit extends Component
     public ?string $existing_logo_path = null;
     public ?string $existing_screenshot_path = null;
 
+    /** Extra category ids (besides the primary) this site is listed under */
+    public array $selectedCategories = [];
+
     public function mount(?Site $site = null): void
     {
         if ($site && $site->exists) {
@@ -90,6 +93,7 @@ class SiteEdit extends Component
             $this->cons = $site->cons ?? [];
             $this->existing_logo_path = $site->logo_path;
             $this->existing_screenshot_path = $site->screenshot_path;
+            $this->selectedCategories = $site->categories->pluck('id')->map(fn ($id) => (string) $id)->all();
         }
     }
 
@@ -160,14 +164,35 @@ class SiteEdit extends Component
             $data['screenshot_path'] = $this->screenshot_upload->store('screenshots', $disk);
         }
 
-        if ($this->site && $this->site->exists) {
-            $this->site->update($data);
-            session()->flash('status', 'Site güncellendi.');
-        } else {
+        $isNew = ! ($this->site && $this->site->exists);
+
+        if ($isNew) {
             $this->site = Site::create($data);
+        } else {
+            $this->site->update($data);
+        }
+
+        $this->syncCategories();
+
+        if ($isNew) {
             session()->flash('status', 'Site oluşturuldu.');
             return redirect()->route('admin.site.edit', $this->site);
         }
+        session()->flash('status', 'Site güncellendi.');
+    }
+
+    protected function syncCategories(): void
+    {
+        // Primary category is always included; checkbox list adds the rest
+        $ids = collect($this->selectedCategories)
+            ->map(fn ($id) => (int) $id)
+            ->push((int) $this->category_id)
+            ->unique()
+            ->filter()
+            ->mapWithKeys(fn ($id) => [$id => ['sort_order' => $this->sort_order]])
+            ->all();
+
+        $this->site->categories()->sync($ids);
     }
 
     public function delete()

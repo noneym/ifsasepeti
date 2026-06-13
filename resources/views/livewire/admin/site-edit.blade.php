@@ -16,7 +16,7 @@
             <h2 class="text-xs font-bold uppercase tracking-wider text-ifsa-muted mb-4">Temel Bilgiler</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-xs font-bold mb-1.5">Kategori *</label>
+                    <label class="block text-xs font-bold mb-1.5">Ana kategori * <span class="font-normal text-ifsa-muted">(inceleme sayfası buna bağlı)</span></label>
                     <select wire:model="category_id" class="w-full rounded-lg border-ifsa-border focus:border-ifsa-orange focus:ring-ifsa-orange/30 text-sm">
                         <option value="">- Seçin -</option>
                         @foreach ($categories as $cat)
@@ -44,6 +44,28 @@
                     <label class="block text-xs font-bold mb-1.5">Tag-line (tek satır özet)</label>
                     <input wire:model="tagline" class="w-full rounded-lg border-ifsa-border focus:border-ifsa-orange focus:ring-ifsa-orange/30 text-sm">
                 </div>
+            </div>
+        </div>
+
+        {{-- Listelendiği kategoriler --}}
+        <div class="card p-5">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-ifsa-muted mb-1">Listelendiği Kategoriler</h2>
+            <p class="text-xs text-ifsa-muted mb-4">Site bu kategorilerin hepsinde listelenir. Ana kategori her zaman dahildir.</p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                @foreach ($categories as $cat)
+                    <label class="flex items-center gap-2 cursor-pointer rounded-lg border px-3 py-2 text-sm transition
+                                  {{ in_array((string) $cat->id, $selectedCategories) || (int) $category_id === $cat->id ? 'border-ifsa-orange bg-ifsa-orange/5' : 'border-ifsa-border hover:border-ifsa-orange/50' }}">
+                        <input type="checkbox"
+                               wire:model.live="selectedCategories"
+                               value="{{ $cat->id }}"
+                               @if ((int) $category_id === $cat->id) checked disabled @endif
+                               class="rounded border-ifsa-border text-ifsa-orange focus:ring-ifsa-orange/30">
+                        <span class="truncate">{{ $cat->name }}</span>
+                        @if ((int) $category_id === $cat->id)
+                            <span class="ml-auto text-[9px] font-bold uppercase text-ifsa-orange">Ana</span>
+                        @endif
+                    </label>
+                @endforeach
             </div>
         </div>
 

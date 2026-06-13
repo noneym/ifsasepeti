@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
 
 class Category extends Model
@@ -27,13 +27,16 @@ class Category extends Model
         });
     }
 
-    public function sites(): HasMany
+    public function sites(): BelongsToMany
     {
-        return $this->hasMany(Site::class)->orderBy('sort_order')->orderBy('id');
+        return $this->belongsToMany(Site::class)
+            ->withPivot('sort_order')
+            ->orderBy('category_site.sort_order')
+            ->orderBy('sites.id');
     }
 
-    public function activeSites(): HasMany
+    public function activeSites(): BelongsToMany
     {
-        return $this->sites()->where('is_active', true);
+        return $this->sites()->where('sites.is_active', true);
     }
 }
