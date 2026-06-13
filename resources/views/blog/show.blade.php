@@ -95,8 +95,16 @@
             </p>
         @endif
 
-        <div class="prose prose-sm sm:prose max-w-none dark:prose-invert text-ifsa-ink/90 dark:text-slate-200 leading-relaxed">
-            {!! $post->body !!}
+        <div class="prose prose-sm sm:prose-base max-w-none dark:prose-invert
+                    prose-headings:font-display prose-headings:font-bold
+                    prose-h2:text-ifsa-ink dark:prose-h2:text-slate-100 prose-h2:mt-8 prose-h2:mb-3
+                    prose-h3:text-ifsa-ink dark:prose-h3:text-slate-100
+                    prose-a:text-ifsa-orange prose-a:no-underline hover:prose-a:underline
+                    prose-strong:text-ifsa-ink dark:prose-strong:text-slate-100
+                    prose-hr:border-ifsa-border dark:prose-hr:border-slate-700
+                    prose-li:marker:text-ifsa-orange
+                    text-ifsa-ink/90 dark:text-slate-300 leading-relaxed">
+            {!! $post->body_html !!}
         </div>
 
         @if ($related->count())

@@ -73,6 +73,22 @@ class Post extends Model
         return Storage::disk(config('filesystems.default'))->url($this->cover_path);
     }
 
+    /**
+     * Render the body to HTML. Supports Markdown (##, **, -, links, ---)
+     * and passes through any raw HTML blocks the author wrote.
+     */
+    public function getBodyHtmlAttribute(): string
+    {
+        if (blank($this->body)) {
+            return '';
+        }
+
+        return Str::markdown($this->body, [
+            'html_input' => 'allow',
+            'allow_unsafe_links' => false,
+        ]);
+    }
+
     public function shouldBeSearchable(): bool
     {
         return $this->is_published && $this->published_at && $this->published_at->isPast();
@@ -86,7 +102,7 @@ class Post extends Model
             'slug' => $this->slug,
             'excerpt' => $this->excerpt,
             'tags' => $this->tags ?? [],
-            'body_text' => $this->body ? mb_substr(strip_tags($this->body), 0, 5000) : null,
+            'body_text' => $this->body ? mb_substr(strip_tags($this->body_html), 0, 5000) : null,
             'published_at' => optional($this->published_at)->timestamp,
             'view_count' => (int) $this->view_count,
             'reading_minutes' => (int) $this->reading_minutes,

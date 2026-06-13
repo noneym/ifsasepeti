@@ -37,9 +37,12 @@
         </div>
 
         <div class="card p-5">
-            <label class="block text-xs font-bold mb-1.5">Gövde (HTML destekli)</label>
+            <label class="block text-xs font-bold mb-1.5">Gövde (Markdown veya HTML)</label>
             <textarea wire:model="body" rows="18" class="w-full rounded-lg border-ifsa-border focus:border-ifsa-orange focus:ring-ifsa-orange/30 text-sm font-mono"></textarea>
-            <p class="text-xs text-ifsa-muted mt-1">HTML kullanabilirsiniz: &lt;p&gt;, &lt;h2&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;a href&gt;, &lt;strong&gt;, &lt;em&gt;</p>
+            <p class="text-xs text-ifsa-muted mt-1">
+                Markdown: <code>## Başlık</code>, <code>**kalın**</code>, <code>- madde</code>,
+                <code>[link](https://...)</code>, <code>---</code> (ayraç). HTML de kullanabilirsiniz.
+            </p>
         </div>
 
         <div class="card p-5">
