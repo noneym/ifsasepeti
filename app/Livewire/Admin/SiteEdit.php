@@ -193,6 +193,10 @@ class SiteEdit extends Component
             ->all();
 
         $this->site->categories()->sync($ids);
+
+        // Pivot changes don't fire a model save event, so refresh the
+        // search index manually to keep category facets in sync.
+        $this->site->load('categories')->searchable();
     }
 
     public function delete()

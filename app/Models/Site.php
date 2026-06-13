@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 
 class Site extends Model
 {
     use HasFactory;
+    use Searchable;
 
     protected $guarded = [];
 
@@ -97,6 +99,36 @@ class Site extends Model
             return null;
         }
         return Storage::disk(config('filesystems.default'))->url($this->logo_path);
+    }
+
+    public function shouldBeSearchable(): bool
+    {
+        return $this->is_active;
+    }
+
+    public function toSearchableArray(): array
+    {
+        $this->loadMissing('categories');
+
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'slug' => $this->slug,
+            'url' => $this->url,
+            'tagline' => $this->tagline,
+            'description' => $this->description,
+            'review_long' => $this->review_long ? mb_substr(strip_tags($this->review_long), 0, 3000) : null,
+            'logo_emoji' => $this->logo_emoji,
+            'rating' => (float) $this->rating,
+            'click_count' => (int) $this->click_count,
+            'sort_order' => (int) $this->sort_order,
+            'is_premium' => (bool) $this->is_premium,
+            'is_ai' => (bool) $this->is_ai,
+            'is_new' => (bool) $this->is_new,
+            'category_ids' => $this->categories->pluck('id')->all(),
+            'category_names' => $this->categories->pluck('name')->all(),
+            'primary_category' => optional($this->category)->name,
+        ];
     }
 
     public function getRatingFilledAttribute(): int

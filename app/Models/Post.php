@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
     use HasFactory;
+    use Searchable;
 
     protected $guarded = [];
 
@@ -69,5 +71,25 @@ class Post extends Model
             return null;
         }
         return Storage::disk(config('filesystems.default'))->url($this->cover_path);
+    }
+
+    public function shouldBeSearchable(): bool
+    {
+        return $this->is_published && $this->published_at && $this->published_at->isPast();
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'excerpt' => $this->excerpt,
+            'tags' => $this->tags ?? [],
+            'body_text' => $this->body ? mb_substr(strip_tags($this->body), 0, 5000) : null,
+            'published_at' => optional($this->published_at)->timestamp,
+            'view_count' => (int) $this->view_count,
+            'reading_minutes' => (int) $this->reading_minutes,
+        ];
     }
 }

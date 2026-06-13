@@ -23,4 +23,12 @@ php artisan event:cache || true
 # Storage symlink for public uploads
 php artisan storage:link || true
 
+# Meilisearch: push index settings + (re)import searchable models.
+# Non-fatal: if Meilisearch is unreachable the search UI degrades to a DB lookup.
+if [ -n "${MEILISEARCH_HOST:-}" ]; then
+    php artisan scout:sync-index-settings || true
+    php artisan scout:import "App\\Models\\Site" || true
+    php artisan scout:import "App\\Models\\Post" || true
+fi
+
 exec "$@"

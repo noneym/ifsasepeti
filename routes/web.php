@@ -16,6 +16,7 @@ use App\Livewire\Admin\SiteEdit;
 use App\Livewire\Admin\SiteList;
 use App\Livewire\Admin\UserList;
 use App\Livewire\HomePage;
+use App\Livewire\SearchResults;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomePage::class)->name('home');
@@ -24,6 +25,8 @@ Route::get('/kategori/{slug}', [CategoryController::class, 'show'])->name('categ
 
 Route::get('/inceleme/{slug}', [SiteController::class, 'show'])->name('site.show');
 Route::get('/git/{slug}', [SiteController::class, 'go'])->name('site.go');
+
+Route::get('/ara', SearchResults::class)->name('search');
 
 Route::view('/iletisim', 'pages.contact')->name('contact');
 Route::view('/link-degisimi', 'pages.link-exchange')->name('link-exchange');
