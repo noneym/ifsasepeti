@@ -55,6 +55,35 @@
     }
 }
 
+/* Slim, themed scrollbar for the scrollable category lists on the homepage */
+.cat-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.ifsa.border') transparent;
+    overscroll-behavior: contain;
+}
+.cat-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+.cat-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+.cat-scroll::-webkit-scrollbar-thumb {
+    background-color: theme('colors.ifsa.border');
+    border-radius: 9999px;
+}
+.cat-scroll:hover::-webkit-scrollbar-thumb {
+    background-color: theme('colors.ifsa.orange' / 60%);
+}
+html.dark .cat-scroll {
+    scrollbar-color: theme('colors.slate.700') transparent;
+}
+html.dark .cat-scroll::-webkit-scrollbar-thumb {
+    background-color: theme('colors.slate.700');
+}
+html.dark .cat-scroll:hover::-webkit-scrollbar-thumb {
+    background-color: theme('colors.ifsa.orange' / 60%);
+}
+
 /* Hero mascot - adaptive across breakpoints.
    Mobile: small, sits top-right inside the header.
    lg+:    larger, peeks down BEHIND the top-right card of the grid. */

@@ -15,7 +15,7 @@
         </a>
     @endif
 
-    <ol class="flex-1 py-1">
+    <ol class="cat-scroll flex-1 py-1 max-h-80 overflow-y-auto">
         @foreach ($sites as $index => $site)
             <li class="site-row">
                 <span class="num">{{ $index + 1 }}.</span>
@@ -37,11 +37,13 @@
         @endforeach
     </ol>
 
-    @if ($remaining > 0)
-        <a href="{{ url('/kategori/'.$category->slug) }}"
-           class="btn-more"
-           style="background-color: {{ $category->accent_color }};">
+    <a href="{{ route('category.show', $category->slug) }}"
+       class="btn-more"
+       style="background-color: {{ $category->accent_color }};">
+        @if ($remaining > 0)
             {{ $remaining }} {{ $category->button_label }} →
-        </a>
-    @endif
+        @else
+            TÜMÜNÜ GÖR ({{ $total }}) →
+        @endif
+    </a>
 </div>
