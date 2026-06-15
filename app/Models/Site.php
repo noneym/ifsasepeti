@@ -104,10 +104,27 @@ class Site extends Model
         $w = (int) config('services.screenshot.width', 1200);
         $h = (int) config('services.screenshot.height', 750);
 
-        return match (config('services.screenshot.provider', 'mshots')) {
+        return match (config('services.screenshot.provider', 'cloak')) {
+            'cloak' => $this->cloakUrl(),
             'thumio' => $this->thumioUrl(),
-            default => 'https://s0.wp.com/mshots/v1/'.rawurlencode($this->url).'?w='.$w.'&h='.$h,
+            'mshots' => 'https://s0.wp.com/mshots/v1/'.rawurlencode($this->url).'?w='.$w.'&h='.$h,
+            default => $this->cloakUrl() ?? 'https://s0.wp.com/mshots/v1/'.rawurlencode($this->url).'?w='.$w.'&h='.$h,
         };
+    }
+
+    protected function cloakUrl(): ?string
+    {
+        $base = config('services.screenshot.cloak_url');
+        if (! $base) {
+            return null;
+        }
+        $w = (int) config('services.screenshot.width', 1200);
+        $h = (int) config('services.screenshot.height', 750);
+
+        return rtrim($base, '/')
+            .'?url='.rawurlencode($this->url)
+            .'&width='.$w
+            .'&height='.$h;
     }
 
     protected function thumioUrl(): ?string

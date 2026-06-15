@@ -33,10 +33,13 @@ return [
 
     'screenshot' => [
         // Which live screenshot provider to use when a site has no cached
-        // image: 'mshots' (WordPress, free, no auth) or 'thumio'.
-        'provider' => env('SCREENSHOT_PROVIDER', 'mshots'),
+        // image: 'cloak' (self-hosted CloakBrowser, bypasses Cloudflare),
+        // 'mshots' (WordPress, free) or 'thumio'.
+        'provider' => env('SCREENSHOT_PROVIDER', 'cloak'),
         'width' => (int) env('SCREENSHOT_WIDTH', 1200),
         'height' => (int) env('SCREENSHOT_HEIGHT', 750),
+        // CloakBrowser microservice endpoint, e.g. https://.../screenshot
+        'cloak_url' => env('CLOAK_SCREENSHOT_URL'),
     ],
 
     'thumio' => [

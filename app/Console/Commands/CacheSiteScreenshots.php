@@ -12,15 +12,17 @@ class CacheSiteScreenshots extends Command
     protected $signature = 'sites:cache-screenshots
         {--force : Re-capture sites that already have a cached screenshot}
         {--only= : Only this site id or slug}
-        {--sleep=1 : Seconds to wait between captures}';
+        {--sleep=1 : Seconds to wait between captures}
+        {--retries=3 : How many times to retry a capture before giving up}';
 
     protected $description = 'Fetch each site screenshot from thum.io once and store it on R2, so pages no longer hit thum.io live (faster + survives temporary site outages).';
 
     public function handle(): int
     {
         $disk = config('filesystems.default');
-        $provider = config('services.screenshot.provider', 'mshots');
-        $this->info("Provider: {$provider}");
+        $provider = config('services.screenshot.provider', 'cloak');
+        $retries = max(1, (int) $this->option('retries'));
+        $this->info("Provider: {$provider} | disk: {$disk} | retries: {$retries}");
 
         $query = Site::query()->where('is_active', true)->whereNotNull('url');
 
@@ -51,21 +53,29 @@ class CacheSiteScreenshots extends Command
             }
 
             try {
-                // mShots returns a small "generating" placeholder (~9 KB) on the
-                // first hit and the real screenshot a few seconds later. Real
-                // captures are well over 20 KB, so keep retrying until we get one.
+                // CloakBrowser renders a real PNG in one shot (it solves
+                // Cloudflare challenges, so allow a long timeout). mShots, by
+                // contrast, serves a small GIF "generating" placeholder first,
+                // so we reject non-image / tiny / gif bodies and retry.
                 $body = null;
                 $type = null;
-                $minBytes = 20000;
-                for ($attempt = 1; $attempt <= 8; $attempt++) {
-                    $res = Http::timeout(45)->get($shotUrl);
-                    $type = $res->header('Content-Type');
+                $minBytes = 15000;
+                for ($attempt = 1; $attempt <= $retries; $attempt++) {
+                    $res = Http::timeout(120)->get($shotUrl);
+                    $type = (string) $res->header('Content-Type');
 
-                    if ($res->ok() && str_starts_with((string) $type, 'image/') && strlen($res->body()) >= $minBytes) {
+                    $isRealImage = $res->ok()
+                        && str_starts_with($type, 'image/')
+                        && ! str_contains($type, 'gif')          // mShots placeholder is gif
+                        && strlen($res->body()) >= $minBytes;
+
+                    if ($isRealImage) {
                         $body = $res->body();
                         break;
                     }
-                    sleep(4); // give the provider time to render the real image
+                    if ($attempt < $retries) {
+                        sleep(4);
+                    }
                 }
 
                 if (! $body) {
@@ -74,8 +84,16 @@ class CacheSiteScreenshots extends Command
                     continue;
                 }
 
-                $path = 'screenshots/site-'.$site->id.'-'.substr(md5($site->url), 0, 8).'.png';
+                // Content-hashed filename: a new capture gets a new name, so the
+                // CDN never serves a stale cached copy at the same key.
+                $path = 'screenshots/site-'.$site->id.'-'.substr(md5($body), 0, 12).'.png';
                 Storage::disk($disk)->put($path, $body, 'public');
+
+                // Remove the previous cached file (if any) so we don't pile up junk.
+                $old = $site->getOriginal('screenshot_path');
+                if ($old && $old !== $path && str_starts_with($old, 'screenshots/')) {
+                    Storage::disk($disk)->delete($old);
+                }
 
                 $site->forceFill(['screenshot_path' => $path])->saveQuietly();
 
