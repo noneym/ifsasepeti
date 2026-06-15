@@ -31,6 +31,14 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'screenshot' => [
+        // Which live screenshot provider to use when a site has no cached
+        // image: 'mshots' (WordPress, free, no auth) or 'thumio'.
+        'provider' => env('SCREENSHOT_PROVIDER', 'mshots'),
+        'width' => (int) env('SCREENSHOT_WIDTH', 1200),
+        'height' => (int) env('SCREENSHOT_HEIGHT', 750),
+    ],
+
     'thumio' => [
         'auth' => env('THUMIO_AUTH'),
         'options' => env('THUMIO_OPTIONS', 'width/1200/crop/750/png'),

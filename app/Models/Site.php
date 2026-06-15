@@ -81,15 +81,44 @@ class Site extends Model
 
     public function getScreenshotUrlAttribute(): ?string
     {
+        // Prefer a cached copy on our own storage (R2) — fast and survives
+        // temporary outages of the target site or the screenshot provider.
         if ($this->screenshot_path) {
             return Storage::disk(config('filesystems.default'))->url($this->screenshot_path);
         }
+
+        return $this->liveScreenshotUrl();
+    }
+
+    /**
+     * Build a live screenshot URL from the configured provider.
+     * Used as a fallback when no cached image exists, and by the
+     * sites:cache-screenshots command to populate the cache.
+     */
+    public function liveScreenshotUrl(): ?string
+    {
+        if (! $this->url) {
+            return null;
+        }
+
+        $w = (int) config('services.screenshot.width', 1200);
+        $h = (int) config('services.screenshot.height', 750);
+
+        return match (config('services.screenshot.provider', 'mshots')) {
+            'thumio' => $this->thumioUrl(),
+            default => 'https://s0.wp.com/mshots/v1/'.rawurlencode($this->url).'?w='.$w.'&h='.$h,
+        };
+    }
+
+    protected function thumioUrl(): ?string
+    {
         $auth = config('services.thumio.auth');
-        if (! $auth || ! $this->url) {
+        if (! $auth) {
             return null;
         }
         $options = trim((string) config('services.thumio.options'), '/');
         $optionsPath = $options ? '/'.$options : '';
+
         return 'https://image.thum.io/get/auth/'.$auth.$optionsPath.'/'.$this->url;
     }
 
